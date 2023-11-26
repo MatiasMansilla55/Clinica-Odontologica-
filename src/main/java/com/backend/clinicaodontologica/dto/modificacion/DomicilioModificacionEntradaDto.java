@@ -14,20 +14,20 @@ public class DomicilioModificacionEntradaDto {
         private Long id;
 
         @NotNull(message = "El campo calle no puede ser nulo")
-        //@NotBlank(message = "El campo calle no puede estar en blanco")
+        @NotBlank(message = "El campo calle no puede estar en blanco")
         private String calle;
 
         @NotNull(message = "El campo numero no puede ser nulo")
         @Digits(integer = 8, fraction = 0, message = "El número debe tener como máximo 8 dígitos")
 
-        private int numero;
+        private Integer numero;
 
         @NotNull(message = "El campo localidad no puede ser nulo")
-        //@NotBlank(message = "El campo localidad no puede estar en blanco")
+        @NotBlank(message = "El campo localidad no puede estar en blanco")
         private String localidad;
 
         @NotNull(message = "El campo provincia no puede ser nulo")
-       // @NotBlank(message = "El campo provincia no puede estar en blanco")
+        @NotBlank(message = "El campo provincia no puede estar en blanco")
         private String provincia;
 
         public DomicilioModificacionEntradaDto() {

@@ -4,7 +4,7 @@ import com.backend.clinicaodontologica.dto.entrada.odontologo.OdontologoEntradaD
 import com.backend.clinicaodontologica.dto.modificacion.OdontologoModificacionEntradaDto;
 import com.backend.clinicaodontologica.dto.salida.odontologo.OdontologoSalidaDto;
 
-import com.backend.clinicaodontologica.service.IOdontologoService;
+import com.backend.clinicaodontologica.service.impl.IOdontologoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -20,14 +20,25 @@ public class OdontologoController {
     public OdontologoController(IOdontologoService odontologoService) {
         this.odontologoService = odontologoService;
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<OdontologoSalidaDto> obtenerOdontologoPorId(@PathVariable Long id){
-        return new ResponseEntity<>(odontologoService.buscarOdontologoPorId(id), HttpStatus.OK);
+    @GetMapping("/buscarIdDeOdontologo")
+    public String buscarOdontologoPorId(Model model, @RequestParam Long id){
+        OdontologoSalidaDto odontologo = odontologoService.buscarOdontologoPorId(id);
+
+        model.addAttribute("nombre", odontologo.getNombre());
+        model.addAttribute("apellido", odontologo.getApellido());
+
+        return "odontologo";
+    }
+    @GetMapping("/buscarId/{id}")
+    public OdontologoSalidaDto buscarPorId(@PathVariable Long id){
+        return  odontologoService.buscarOdontologoPorId(id);
+
+
     }
 
     @GetMapping("/listar")
     public ResponseEntity<List<OdontologoSalidaDto>> listarOdontologos(){
-        return new ResponseEntity<>(odontologoService.listarOdontologos(), HttpStatus.OK);
+        return new ResponseEntity<>(odontologoService.listarOdontologo(), HttpStatus.OK);
     }
     @PostMapping("/registrar")
     public ResponseEntity<OdontologoSalidaDto> guardar(@RequestBody OdontologoEntradaDto odontologo){
@@ -38,7 +49,7 @@ public class OdontologoController {
         odontologoService.eliminarOdontologo(id);
     }
     @PutMapping("/actualizar")
-    public OdontologoSalidaDto actualizarOdontologo(@RequestBody OdontologoModificacionEntradaDto odontologo){
-        return odontologoService.actualizarOdontologo(odontologo);
+    public ResponseEntity<OdontologoSalidaDto> actualizarOdontologo(@RequestBody OdontologoModificacionEntradaDto odontologo){
+        return new ResponseEntity<>(odontologoService.actualizarOdontologo(odontologo),HttpStatus.OK);
     }
 }

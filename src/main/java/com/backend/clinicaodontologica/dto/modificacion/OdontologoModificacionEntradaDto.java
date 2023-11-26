@@ -9,25 +9,25 @@ public class OdontologoModificacionEntradaDto {
     private Long id;
 
     @NotNull(message = "La matricula del odontólogo no puede ser nula")
-    //@NotBlank(message = "Debe especificarse la matricula del odontólogo")
-    //@Size(min = 10, message = "El campo debe tener mínimo 10 caracteres")
-    private int matricula;
+    @NotBlank(message = "Debe especificarse la matricula del odontólogo")
+    @Size(min = 10, message = "El campo debe tener mínimo 10 caracteres")
+    private String matricula;
 
     @Size(max = 50, message = "El nombre del odontólogo debe tener hasta 50 caracteres")
     @NotNull(message = "El nombre de odontólogo no puede ser nulo")
-    //@NotBlank(message = "Debe especificarse el nombre del odontólogo")
+    @NotBlank(message = "Debe especificarse el nombre del odontólogo")
     private String nombre;
 
     @Size(max = 50, message = "El apellido de odontólogo debe tener hasta 50 caracteres")
     @NotNull(message = "El apellido de odontólogo no puede ser nulo")
-    //@NotBlank(message = "Debe especificarse el apellido del odontólogo")
+    @NotBlank(message = "Debe especificarse el apellido del odontólogo")
     private String apellido;
 
 
     public OdontologoModificacionEntradaDto() {
     }
 
-    public OdontologoModificacionEntradaDto(Long id, int matricula, String nombre, String apellido) {
+    public OdontologoModificacionEntradaDto(Long id, String matricula, String nombre, String apellido) {
         this.id = id;
         this.matricula = matricula;
         this.nombre = nombre;
@@ -42,11 +42,11 @@ public class OdontologoModificacionEntradaDto {
         this.id = id;
     }
 
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 

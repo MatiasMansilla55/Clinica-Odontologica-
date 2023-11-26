@@ -6,22 +6,22 @@ import javax.validation.constraints.Size;
 
 public class OdontologoEntradaDto {
 
-    @NotNull(message = "El campo Matricula no puede ser nulo")
-    //@NotBlank(message = "Debe especificarse la matricula del odontólogo")
-    private int matricula;
+    @NotNull(message = "El dni del paciente no puede ser nulo")
+    private Integer matricula;
 
-    @NotNull(message = "El nombre del Odontologo no puede ser nulo")
-    //@NotBlank(message = "Debe especificarse el nombre del odontologo")
+    @NotNull(message = "El nombre del paciente no puede ser nulo")
+    @NotBlank(message = "Debe especificarse el nombre del odontologo")
     @Size(max = 50, message = "El nombre debe tener hasta 50 caracteres")
     private String nombre;
 
     @Size(max = 50, message = "El apellido debe tener hasta 50 caracteres")
     @NotNull(message = "El apellido del odontologo no puede ser nulo")
-    //@NotBlank(message = "Debe especificarse el apellido del odontologo")
+    @NotBlank(message = "Debe especificarse el apellido del odontologo")
     private String apellido;
 
 
     public OdontologoEntradaDto() {
+
     }
 
     public OdontologoEntradaDto(int matricula, String nombre, String apellido) {
@@ -53,6 +53,7 @@ public class OdontologoEntradaDto {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
+
 
     @Override
     public String toString() {

@@ -1,46 +1,40 @@
 package com.backend.clinicaodontologica.dto.modificacion;
 
-import com.backend.clinicaodontologica.dto.entrada.odontologo.OdontologoEntradaDto;
-import com.backend.clinicaodontologica.dto.entrada.paciente.PacienteEntradaDto;
 import com.backend.clinicaodontologica.entity.Odontologo;
 import com.backend.clinicaodontologica.entity.Paciente;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+
 import javax.validation.Valid;
 import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class TurnosModificacionEntradaDto {
 
-    @NotNull(message = "Debe proveerse el id del turno que desea modificar")
+    @NotNull(message = "Debe proveerse el id del paciente que se desea modificar")
     private Long id;
-
-    @FutureOrPresent(message = "La fecha y hora no pueden ser anterior al día de hoy")
-    @NotNull(message = "El campo fecha y hora no puede ser nulo")
-    //@NotBlank(message = "El campo fecha y hora no puede estar en blanco")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @FutureOrPresent(message = "La fecha no puede ser anterior al día de hoy")
+    @NotNull(message = "Debe especificarse la fecha de ingreso del paciente")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fechaYHora;
 
-    @NotNull(message = "El campo Odontologo no puede ser nulo")
-    //@NotBlank(message = "El campo Odontologo no puede estar en blanco")
+    @NotNull(message = "El odontologo no puede estar nulo")
     @Valid
-    private OdontologoEntradaDto odontologoEntradaDto;
+    private Odontologo odontologo;
 
-    @NotNull(message = "El campo Paciente no puede ser nulo")
-    //@NotBlank(message = "El campo Paciente no puede estar en blanco")
+    @NotNull(message = "El domicilio del paciente no puede ser nulo")
     @Valid
-    private PacienteEntradaDto pacienteEntradaDto;
+    private Paciente paciente;
 
     public TurnosModificacionEntradaDto() {
     }
 
-    public TurnosModificacionEntradaDto(Long id, LocalDateTime fechaYHora, OdontologoEntradaDto odontologoEntradaDto, PacienteEntradaDto pacienteEntradaDto) {
-        this.id = id;
+    public TurnosModificacionEntradaDto(LocalDateTime fechaYHora, Odontologo odontologo, Paciente paciente) {
+
         this.fechaYHora = fechaYHora;
-        this.odontologoEntradaDto = odontologoEntradaDto;
-        this.pacienteEntradaDto = pacienteEntradaDto;
+        this.odontologo = odontologo;
+        this.paciente = paciente;
     }
 
     public Long getId() {
@@ -59,19 +53,19 @@ public class TurnosModificacionEntradaDto {
         this.fechaYHora = fechaYHora;
     }
 
-    public OdontologoEntradaDto getOdontologoEntradaDto() {
-        return odontologoEntradaDto;
+    public Odontologo getOdontologo() {
+        return odontologo;
     }
 
-    public void setOdontologoEntradaDto(OdontologoEntradaDto odontologoEntradaDto) {
-        this.odontologoEntradaDto = odontologoEntradaDto;
+    public void setOdontologo(Odontologo odontologo) {
+        this.odontologo = odontologo;
     }
 
-    public PacienteEntradaDto getPacienteEntradaDto() {
-        return pacienteEntradaDto;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setPacienteEntradaDto(PacienteEntradaDto pacienteEntradaDto) {
-        this.pacienteEntradaDto = pacienteEntradaDto;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 }

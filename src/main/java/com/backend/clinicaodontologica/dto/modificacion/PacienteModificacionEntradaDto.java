@@ -15,13 +15,13 @@ public class PacienteModificacionEntradaDto {
     private Long id;
 
     @NotNull(message = "El nombre del paciente no puede ser nulo")
-    //@NotBlank(message = "Debe especificarse el nombre del paciente")
+    @NotBlank(message = "Debe especificarse el nombre del paciente")
     @Size(max = 50, message = "El nombre debe tener hasta 50 caracteres")
     private String nombre;
 
     @Size(max = 50, message = "El apellido debe tener hasta 50 caracteres")
     @NotNull(message = "El apellido del paciente no puede ser nulo")
-    //@NotBlank(message = "Debe especificarse el apellido del paciente")
+    @NotBlank(message = "Debe especificarse el apellido del paciente")
     private String apellido;
 
     @NotNull(message = "El dni del paciente no puede ser nulo")

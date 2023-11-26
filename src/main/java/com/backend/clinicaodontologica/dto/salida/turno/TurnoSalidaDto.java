@@ -1,7 +1,5 @@
 package com.backend.clinicaodontologica.dto.salida.turno;
 
-import com.backend.clinicaodontologica.dto.salida.odontologo.OdontologoSalidaDto;
-import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
 import com.backend.clinicaodontologica.entity.Odontologo;
 import com.backend.clinicaodontologica.entity.Paciente;
 
@@ -13,18 +11,19 @@ public class TurnoSalidaDto {
 
     private LocalDateTime fechaYHora;
 
-    private OdontologoSalidaDto odontologoSalidaDto;
 
-    private PacienteSalidaDto pacienteSalidaDto;
+    private Odontologo odontologo;
+
+    private Paciente paciente;
 
     public TurnoSalidaDto() {
     }
 
-    public TurnoSalidaDto(Long id, LocalDateTime fechaYHora, OdontologoSalidaDto odontologoSalidaDto, PacienteSalidaDto pacienteSalidaDto) {
-        this.id = id;
+    public TurnoSalidaDto(LocalDateTime fechaYHora, Odontologo odontologo, Paciente paciente) {
+
         this.fechaYHora = fechaYHora;
-        this.odontologoSalidaDto = odontologoSalidaDto;
-        this.pacienteSalidaDto = pacienteSalidaDto;
+        this.odontologo = odontologo;
+        this.paciente = paciente;
     }
 
     public Long getId() {
@@ -43,19 +42,29 @@ public class TurnoSalidaDto {
         this.fechaYHora = fechaYHora;
     }
 
-    public OdontologoSalidaDto getOdontologoSalidaDto() {
-        return odontologoSalidaDto;
+    public Odontologo getOdontologo() {
+        return odontologo;
     }
 
-    public void setOdontologoSalidaDto(OdontologoSalidaDto odontologoSalidaDto) {
-        this.odontologoSalidaDto = odontologoSalidaDto;
+    public void setOdontologo(Odontologo odontologo) {
+        this.odontologo = odontologo;
     }
 
-    public PacienteSalidaDto getPacienteSalidaDto() {
-        return pacienteSalidaDto;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setPacienteSalidaDto(PacienteSalidaDto pacienteSalidaDto) {
-        this.pacienteSalidaDto = pacienteSalidaDto;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    @Override
+    public String toString() {
+        return "TurnoSalidaDto{" +
+                "id=" + id +
+                ", fechaYHora=" + fechaYHora +
+                ", odontologo=" + odontologo +
+                ", paciente=" + paciente +
+                '}';
     }
 }
